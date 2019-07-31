@@ -1,0 +1,18 @@
+version: '2.1'
+services:
+    ap-ivs-service:
+        container_name: ap-tims-api-gateway-service
+        image: osucass/ap_itemviewerservice:@itemViewerServiceVersion@
+        expose:
+            - 8080
+        ports:
+            - 8200:8080
+        volumes:
+            - @USER_HOME@/ItemBankIVS/:/home/tomcat7/content/
+        networks:
+            - spring-cloud-network
+        logging:
+            driver: json-file
+networks:
+    spring-cloud-network:
+        driver: bridge

@@ -1,0 +1,47 @@
+# --------------------------------------------------------
+# These properties are the local development properties.
+#
+# Spring boot uses this file when the application is launched
+# with the root of the project set as the working directory.
+# These properties take precedence over the classpath
+# application.yml.
+#
+# Using gradle from the commandline means the working
+# directory is by default the project root.
+#
+# Using Intellij you need to setup your run config so the
+# working directory is the project root.
+# --------------------------------------------------------
+server:
+  port: 8180
+
+zuul:
+  routes:
+    tms-api:
+      path: /api/tms/**
+      url: http://localhost:8089/api/v1
+    tms-manage:
+      path: /manage/tms/**
+      url: http://localhost:8089/manage
+  add-proxy-headers: true
+
+security:
+  basic:
+    enabled: false
+
+tims:
+  api:
+    gateway:
+      checkTokenEndpointUrl: "https://sso-deployment.sbtds.org/auth/oauth2/tokeninfo"
+
+logging:
+  level.org.springframework.security: DEBUG
+
+spring:
+  autoconfigure:
+    exclude:
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+    - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+    - org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration
+    - org.springframework.boot.autoconfigure.session.SessionAutoConfiguration
