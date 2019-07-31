@@ -207,7 +207,6 @@ task dockerCopyFiles(type: Copy) {
     from('src/main/docker/') {
         filter(ReplaceTokens, tokens: [USER_HOME:           System.env.HOME,
                                        configServerVersion: project.configServerVersion,
-                                       itemViewerServiceVersion: project.itemViewerServiceVersion,
                                        version:             project.version,
                                        dockerTagBase:       project.dockerTagBase])
     }
