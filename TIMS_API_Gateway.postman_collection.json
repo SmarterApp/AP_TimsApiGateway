@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "16f1aeac-446f-4df9-b2ef-e130844e8c14",
+		"name": "TIMS API Gateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "QA - OpenAM - Get auth token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2c154386-d85c-4af3-98ea-b08600657733",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"access_token\", jsonData.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"disabled": false,
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "sbacdw",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "sbacdw123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://sso-deployment.sbtds.org/auth/oauth2/access_token?realm=/sbac",
+					"protocol": "https",
+					"host": [
+						"sso-deployment",
+						"sbtds",
+						"org"
+					],
+					"path": [
+						"auth",
+						"oauth2",
+						"access_token"
+					],
+					"query": [
+						{
+							"key": "realm",
+							"value": "/sbac"
+						}
+					]
+				},
+				"description": "Get oauth2 token for client sbacdw\nSet global variable access_token"
+			},
+			"response": []
+		},
+		{
+			"name": "QA - OpenAM - Get auth token info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer d5992a45-f45e-4282-a93d-f96c175ddf8e",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://sso-deployment.sbtds.org/auth/oauth2/tokeninfo",
+					"protocol": "https",
+					"host": [
+						"sso-deployment",
+						"sbtds",
+						"org"
+					],
+					"path": [
+						"auth",
+						"oauth2",
+						"tokeninfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QA - Gateway - Info (no auth)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://iat-api-gateway-awsdev.sbtds.org/manage/info",
+					"protocol": "http",
+					"host": [
+						"iat-api-gateway-awsdev",
+						"sbtds",
+						"org"
+					],
+					"path": [
+						"manage",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QA - Gateway - Generate Fixed From Package",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "daeb2b09-a36e-4ba3-bb62-b2777d929d11",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/bdrainer/Fairway/projects/SmarterBalanced/git/AP_TestManagementService/src/test/resources/SBAC-IAB-FIXED-G11M-Winter-2017-2018.xlsx"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://iat-api-gateway-awsdev.sbtds.org/api/tms/package/generate",
+					"protocol": "http",
+					"host": [
+						"iat-api-gateway-awsdev",
+						"sbtds",
+						"org"
+					],
+					"path": [
+						"api",
+						"tms",
+						"package",
+						"generate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
