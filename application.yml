@@ -18,9 +18,11 @@ server:
 zuul:
   routes:
     tms-api:
+      sensitiveHeaders: Authorization
       path: /api/tms/**
       url: http://localhost:8089/api/v1
     tms-manage:
+      sensitiveHeaders: Authorization
       path: /manage/tms/**
       url: http://localhost:8089/manage
   add-proxy-headers: true
