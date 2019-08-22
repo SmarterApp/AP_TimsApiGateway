@@ -54,7 +54,7 @@
 						},
 						{
 							"key": "client_secret",
-							"value": "sbacdw123",
+							"value": "",
 							"type": "text"
 						}
 					]
@@ -86,14 +86,18 @@
 		{
 			"name": "QA - OpenAM - Get auth token info",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "350b38ca-a095-45ee-a565-524501793ee3",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer d5992a45-f45e-4282-a93d-f96c175ddf8e",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"url": {
 					"raw": "https://sso-deployment.sbtds.org/auth/oauth2/tokeninfo",
 					"protocol": "https",
@@ -136,14 +140,113 @@
 			"response": []
 		},
 		{
-			"name": "QA - Gateway - Generate Fixed From Package",
+			"name": "QA - Gateway - (Translation) Get Items",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "daeb2b09-a36e-4ba3-bb62-b2777d929d11",
+							"value": "abde3055-dff0-4790-974a-d030fb167d4a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/bdrainer/Fairway/projects/SmarterBalanced/git/AP_TimsTool/FixedFormInputSample.xlsx"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://iat-api-gateway-awsdev.sbtds.org/api/translation/items/209379?format=saaif&includeImport=false",
+					"protocol": "https",
+					"host": [
+						"iat-api-gateway-awsdev",
+						"sbtds",
+						"org"
+					],
+					"path": [
+						"api",
+						"translation",
+						"items",
+						"209379"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "saaif"
+						},
+						{
+							"key": "includeImport",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QA - Gateway - (TMS) Generate Fixed From Package Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "68485e3d-f7fe-4041-b818-43648145aae1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/bdrainer/Fairway/projects/SmarterBalanced/git/AP_TimsTool/FixedFormInputSample.xlsx"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://iat-api-gateway-awsdev.sbtds.org/api/tms/package/generate",
+					"protocol": "https",
+					"host": [
+						"iat-api-gateway-awsdev",
+						"sbtds",
+						"org"
+					],
+					"path": [
+						"api",
+						"tms",
+						"package",
+						"generate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Local - Gateway - (TMS) Generate Fixed From Package Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
 							"type": "string"
 						}
 					]
@@ -161,13 +264,12 @@
 					]
 				},
 				"url": {
-					"raw": "https://iat-api-gateway-awsdev.sbtds.org/api/tms/package/generate",
-					"protocol": "https",
+					"raw": "http://localhost:8180/api/tms/package/generate",
+					"protocol": "http",
 					"host": [
-						"iat-api-gateway-awsdev",
-						"sbtds",
-						"org"
+						"localhost"
 					],
+					"port": "8180",
 					"path": [
 						"api",
 						"tms",

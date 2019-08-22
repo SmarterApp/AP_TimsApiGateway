@@ -25,6 +25,12 @@ zuul:
       sensitiveHeaders: Authorization
       path: /manage/tms/**
       url: http://localhost:8089/manage
+    translation-api:
+      path: /api/translation/**
+      url: http://localhost:8085/api/v1
+    translation-manage:
+      path: /manage/translation/**
+      url: http://localhost:8085/manage
   add-proxy-headers: true
 
 security:
