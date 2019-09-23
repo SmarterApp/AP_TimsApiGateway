@@ -17,6 +17,31 @@ info:
 management:
   context-path: "/manage"
 
+zuul:
+  routes:
+    tms-api:
+      sensitiveHeaders: Authorization
+      path: /api/tms/**
+      url: http://localhost:8089/api/v1
+    translation-api:
+      path: /api/translation/**
+      url: http://localhost:8085/api/v1
+  add-proxy-headers: true
 
+security:
+  basic:
+    enabled: false
 
+tims:
+  api:
+    gateway:
+      checkTokenEndpointUrl: "https://sso-deployment.sbtds.org/auth/oauth2/tokeninfo"
 
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      - org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration
+      - org.springframework.boot.autoconfigure.session.SessionAutoConfiguration

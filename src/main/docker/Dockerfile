@@ -15,6 +15,6 @@ COPY ap-tims-api-gateway.jar /
 
 RUN apk --no-cache add curl
 
-ENTRYPOINT ["/usr/bin/java"]
+ENV MAX_HEAP_SIZE -Xmx384m
 
-CMD ["-jar", "/ap-tims-api-gateway.jar"]
+CMD java $MAX_HEAP_SIZE $JAVA_OPTS -jar ap-tims-api-gateway.jar
