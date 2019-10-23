@@ -96,8 +96,8 @@ dependencies {
 
     compile 'com.lmax:disruptor:3.3.7'
 
-    compile group: 'com.okta.jwt', name: 'okta-jwt-verifier', version: '0.4.0'
-    compile group: 'com.okta.jwt', name: 'okta-jwt-verifier-impl', version: '0.4.0'
+    compile 'com.okta.jwt:okta-jwt-verifier:0.4.0'
+    compile 'com.okta.jwt:okta-jwt-verifier-impl:0.4.0'
 
     compileOnly 'org.projectlombok:lombok'
 
