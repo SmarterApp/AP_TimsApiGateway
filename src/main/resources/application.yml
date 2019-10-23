@@ -32,9 +32,19 @@ security:
   basic:
     enabled: false
 
+# For Okta
+#tims:
+#  api:
+#    gateway:
+#      tokenProvider: okta
+#      audience: api://staging
+#      checkTokenEndpointUrl: "https://smarterbalanced.oktapreview.com/oauth2/auslw2qcsmsUgzsqr0h7"
+
+# For OpenAM
 tims:
   api:
     gateway:
+      tokenProvider: opeanam
       checkTokenEndpointUrl: "https://sso-deployment.sbtds.org/auth/oauth2/tokeninfo"
 
 spring:
