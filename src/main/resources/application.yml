@@ -46,6 +46,7 @@ tims:
     gateway:
       tokenProvider: opeanam
       checkTokenEndpointUrl: "https://sso-deployment.sbtds.org/auth/oauth2/tokeninfo"
+      permissionEndpoint: "http://localhost:8182"
 
 spring:
   autoconfigure:
