@@ -13,19 +13,30 @@ info:
       source: ${sourceCompatibility}
       target: ${targetCompatibility}
 
-# changes actuator endpoints - /manage/info
+# actuator endpoints
 management:
   context-path: "/manage"
 
+itembank:
+  services:
+    permission:
+      url: "http://localhost:8182"
+
+jwt:
+  secret: "\${TIMS_JWT_SECRET}"
+
 zuul:
+  host:
+    socket-timeout-millis: 30000
   routes:
+    translation-api:
+      path: /api/translation/**
+      url: http://localhost:8085/api/v1
     tms-api:
       sensitiveHeaders: Authorization
       path: /api/tms/**
       url: http://localhost:8089/api/v1
-    translation-api:
-      path: /api/translation/**
-      url: http://localhost:8085/api/v1
+  ignored-headers: Pragma,X-Frame-Options,X-Content-Type-Options,X-XSS-Protection,Expires
   add-proxy-headers: true
 
 security:
@@ -54,4 +65,3 @@ spring:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
       - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
       - org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration
-      - org.springframework.boot.autoconfigure.session.SessionAutoConfiguration
