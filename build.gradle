@@ -79,8 +79,6 @@ dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter-zuul'
 
     compile 'org.springframework.security.oauth:spring-security-oauth2:2.3.0.RELEASE'
-    
-    compile 'org.springframework.retry:spring-retry'
 
     compile 'org.apache.commons:commons-collections4:4.1'
     compile 'org.apache.commons:commons-lang3:3.5'
