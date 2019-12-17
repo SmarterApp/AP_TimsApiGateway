@@ -20,7 +20,7 @@ management:
 itembank:
   services:
     permission:
-      url: "http://localhost:8182"
+      url: "http://localhost:8181"
 
 jwt:
   secret: "\${TIMS_JWT_SECRET}"
