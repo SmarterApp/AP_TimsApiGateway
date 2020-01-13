@@ -1,3 +1,6 @@
+# !!! IMPORTANT !!! - Archived
+This project has been archived and is no longer actively maintained.  All code has been migrated to the [TIMS project](https://github.com/SmarterApp/TIMS).
+
 # Assessment Production - Item Viewer Proxy
 Micro-service to proxy calls to the item viewer service.  The proxy provides a security gateway ensuring the request has 
 been authenticated.
